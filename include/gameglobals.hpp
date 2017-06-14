@@ -15,6 +15,9 @@ namespace globals {
     const std::string spellQ = "spellQ";
     const std::string spellW = "spellW";
     const std::string spellE = "spellE";
+    const std::string espada = "espada";
+    const std::string andar = "andar";
+    const std::string arco = "arco";
 }
 
 #endif
