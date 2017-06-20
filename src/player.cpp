@@ -6,6 +6,7 @@
 #include "vector.hpp"
 #include "keyword.hpp"
 #include "gameglobals.hpp"
+#include "components/animationcontroller.hpp"
 #include <sstream>
 #include "game.hpp"
 
@@ -18,15 +19,11 @@ bool Player::init()
 {
     engine::GameObject::init();
 
-    for(auto instrument : instruments){
-        instrument.second.init();
-    }
+    //active_instrument = instruments[globals::andar];
+    active_sprite = sprites[globals::andar];
 
-    active_instrument = instruments[globals::banjo];
-    active_sprite = sprites[globals::banjo];
-
-    sprites[globals::eletric_guitar]->setState(Component::State::disabled);
-    sprites[globals::accordion]->setState(Component::State::disabled);
+    //sprites[globals::eletric_guitar]->setState(Component::State::disabled);
+    //sprites[globals::accordion]->setState(Component::State::disabled);
 
     //INFO("x"<<physics.collisionBox.x<<"  y"<<physics.collisionBox.y <<"  w"<<physics.collisionBox.w<< "    h"<< physics.collisionBox.h)
     return true;
@@ -66,11 +63,8 @@ bool Player::moveDown(){
     Vector2D move(componentX,componentY);
     physics.velocity = move;
     // Update Frame
-    int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 0*h;
-
-    xF = xFrame;
-    yF = yFrame;
+    auto animCtrl = get_component<AnimationControllerComponent>();
+    animCtrl->changeAnimation("moveDown");
     return true;
 }
 
@@ -82,11 +76,8 @@ bool Player::moveUp(){
     Vector2D move(componentX,componentY);
     physics.velocity = move;
     // Update Frame
-    int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 3*h;
-
-    xF = xFrame;
-    yF = yFrame;
+    auto animCtrl = get_component<AnimationControllerComponent>();
+    animCtrl->changeAnimation("moveUp");
     return true;
 }
 
@@ -99,11 +90,8 @@ bool Player::moveLeft(){
     Vector2D move(componentX,componentY);
     physics.velocity = move;
     // Update Frame
-    int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 1*h;
-
-    xF = xFrame;
-    yF = yFrame;
+    auto animCtrl = get_component<AnimationControllerComponent>();
+    animCtrl->changeAnimation("moveLeft");
     return true;
 }
 
@@ -116,11 +104,8 @@ bool Player::moveRight(){
     Vector2D move(componentX,componentY);
     physics.velocity = move;
     // Update Frame
-    int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 2*h;
-
-    xF = xFrame;
-    yF = yFrame;
+    auto animCtrl = get_component<AnimationControllerComponent>();
+    animCtrl->changeAnimation("moveRight");
     return true;
 }
 
@@ -162,7 +147,9 @@ bool Player::handlePlayer(){
     }
     if(Input::keyPressed(Input::Q))
     {
-        active_instrument.useSpellQ();
+        auto animCtrl = get_component<AnimationControllerComponent>();
+        animCtrl->changeAnimation("atackLeft");
+        //active_instrument.useSpellQ();
     }
     if(Input::keyPressed(Input::W))
     {
@@ -180,8 +167,8 @@ void Player::addInstrument(std::string instrument_name, Instrument instrument){
     instruments[instrument_name] = instrument;
 }
 
-void Player::addSprite(std::string instrument_name, ImageComponent * sprite){
-    sprites[instrument_name] = sprite;
+void Player::addSprite(std::string sprite_name, ImageComponent * sprite){
+    sprites[sprite_name] = sprite;
 }
 
 Instrument Player::getActiveInstrument(){
