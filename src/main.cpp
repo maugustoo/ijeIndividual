@@ -58,7 +58,10 @@ int main(int, char**)
    //ImageComponent linkWalkImage(player, "spritesLink3.png", 8, 4);
 
 
-    AnimationComponent linkAtackLeft(player, "atackLeft.png", 6, 1, 1000, 0, 5);
+    AnimationComponent linkAtackLeft(player, "atackLeft.png", 4, 1, 500, 0, 4, 1);
+    AnimationComponent linkAtackDown(player, "atackDown.png", 4, 1, 500, 0, 4, 1);
+    AnimationComponent linkAtackUp(player, "atackUp.png", 4, 1, 500, 0, 4, 1);
+    AnimationComponent linkAtackRight(player, "atackRight.png", 4, 1, 500, 0, 4, 1); 
 
     AnimationComponent walkLeft(player, "spritesLink3.png", 8, 4, 1000, 0, 7);
     AnimationComponent walkRight(player, "spritesLink3.png", 8, 4, 1000, 8, 15);
@@ -84,10 +87,12 @@ int main(int, char**)
     linkController.addAnimation("moveUpPause", walkUpPause);
     linkController.addAnimation("moveDownPause", walkDownPause);
     linkController.addAnimation("moveLeftPause", walkLeftPause);
-    linkController.addAnimation("moveRightPause", walkRightPause);
+    linkController.addAnimation("moveRightPause", walkRightPause); 
 
-    //player.addSprite(globals::andar, &linkWalkImage);
-    //player.addSprite("atackLeft", &linkAtackLeft);
+    linkController.addAnimation("atackLeft", linkAtackLeft);
+    linkController.addAnimation("atackDown", linkAtackDown);
+    linkController.addAnimation("atackRight", linkAtackRight);
+    linkController.addAnimation("atackUp", linkAtackUp);
 
     //player.add_component(linkWalkImage);
     player.add_component(linkController);

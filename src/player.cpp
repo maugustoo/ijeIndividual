@@ -15,6 +15,8 @@
 
 using namespace engine;
 
+int lastMove = 1;
+
 bool Player::init()
 {
     engine::GameObject::init();
@@ -56,6 +58,8 @@ bool Player::update()
     return true;
 }
 bool Player::moveDown(){
+    lastMove = 1;
+
     // Update Velocity
     int componentX = 0;
     int componentY = defaultVel;
@@ -69,6 +73,8 @@ bool Player::moveDown(){
 }
 
 bool Player::moveUp(){
+    lastMove = 2;
+
     // Update Velocity
     int componentX = 0;
     int componentY = -1*defaultVel;
@@ -82,6 +88,8 @@ bool Player::moveUp(){
 }
 
 bool Player::moveLeft(){
+    lastMove = 3;
+
     // Update Velocity
     int componentX = -1*defaultVel;
 
@@ -96,6 +104,8 @@ bool Player::moveLeft(){
 }
 
 bool Player::moveRight(){
+    lastMove = 4;
+
     // Update Velocity
 
     int componentX = defaultVel;
@@ -135,29 +145,22 @@ bool Player::handlePlayer(){
     
     if(Input::keyPressed(Input::ONE))
     {
-        changeInstrument(globals::banjo);
-    }
-    if(Input::keyPressed(Input::TWO))
-    {
-        changeInstrument(globals::eletric_guitar);
-    }
-    if(Input::keyPressed(Input::THREE))
-    {
-        changeInstrument(globals::accordion);
-    }
-    if(Input::keyPressed(Input::Q))
-    {
-        auto animCtrl = get_component<AnimationControllerComponent>();
-        animCtrl->changeAnimation("atackLeft");
-        //active_instrument.useSpellQ();
-    }
-    if(Input::keyPressed(Input::W))
-    {
-        //active_instrument.useSpellW();
-    }
-    if(Input::keyPressed(Input::E))
-    {
-        //active_instrument.useSpellE();
+        if(lastMove == 3) {
+            auto animCtrl = get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("atackLeft");
+        }
+        if(lastMove == 2) {
+            auto animCtrl = get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("atackUp");    
+        }
+        if(lastMove == 1){
+            auto animCtrl = get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("atackDown");
+        }
+        if(lastMove == 4) {
+            auto animCtrl = get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("atackRight");
+        }
     }
     
     return true;

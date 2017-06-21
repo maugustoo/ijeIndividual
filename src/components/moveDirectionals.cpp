@@ -62,6 +62,13 @@ bool MoveDirectionals::update(){
         (dynamic_cast<Player *>(m_game_object))->moveLeft();
     }
 
+    if(Input::keyPressed(Input::ONE))
+    {
+        Vector2D nulo(0,0);
+        m_game_object->physics.velocity = nulo;
+        keyFlag = true;
+    }
+
     if(!keyFlag){
         Vector2D nulo(0,0);
         m_game_object->physics.velocity = nulo;
