@@ -35,13 +35,14 @@ int main(int, char**)
     // Configure game
     Game::instance.set_properties(globals::game_name, globals::window_size);
 
-    GameScene room1("stage_1_room_1");    
+    GameScene room1("stage_1_room_1");
     
     /* Gamescene*/
     Game::instance.add_scene(room1);
 
     Player player(globals::player, 100, 100);
     player.xF = 0; player.yF = 0;
+
 
     MoveDirectionals move(player);
 
@@ -56,6 +57,7 @@ int main(int, char**)
 
    //ImageComponent linkWalkImage(player, "spritesLink3.png", 8, 4);
 
+
     AnimationComponent linkAtackLeft(player, "atackLeft.png", 6, 1, 1000, 0, 5);
 
     AnimationComponent walkLeft(player, "spritesLink3.png", 8, 4, 1000, 0, 7);
@@ -63,13 +65,15 @@ int main(int, char**)
     AnimationComponent walkUp(player, "spritesLink3.png", 8, 4, 1000, 16, 23);
     AnimationComponent walkDown(player, "spritesLink3.png", 8, 4, 1000, 24, 31);
 
-    AnimationComponent walkLeftPause(player, "spritesLink3.png", 8, 4, 1000, 0, 0);
-    AnimationComponent walkRightPause(player, "spritesLink3.png", 8, 4, 1000, 8, 8);
-    AnimationComponent walkUpPause(player, "spritesLink3.png", 8, 4, 1000, 16, 16);
-    AnimationComponent walkDownPause(player, "spritesLink3.png", 8, 4, 1000, 24, 24);    
+
+    AnimationComponent walkLeftPause(player, "spritesLink3.png", 8, 4, 1000, 0, 1);
+    AnimationComponent walkRightPause(player, "spritesLink3.png", 8, 4, 1000, 8, 9);
+    AnimationComponent walkUpPause(player, "spritesLink3.png", 8, 4, 1000, 16, 17);
+    AnimationComponent walkDownPause(player, "spritesLink3.png", 8, 4, 1000, 24, 25);    
 
 
     AnimationControllerComponent linkController(player);
+
     //linkController.addAnimation("atackLeft", linkAtackLeft);
 
     linkController.addAnimation("moveUp", walkUp);

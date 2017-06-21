@@ -153,11 +153,11 @@ bool Player::handlePlayer(){
     }
     if(Input::keyPressed(Input::W))
     {
-        active_instrument.useSpellW();
+        //active_instrument.useSpellW();
     }
     if(Input::keyPressed(Input::E))
     {
-        active_instrument.useSpellE();
+        //active_instrument.useSpellE();
     }
     
     return true;

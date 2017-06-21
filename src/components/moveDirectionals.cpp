@@ -7,9 +7,13 @@
 #include "game.hpp"
 #include "tilemap.hpp"
 
+using namespace engine;
+
+int keyActive = 2;
+
 bool MoveDirectionals::update(){
 
-    int keyActive = -1;
+    keyActive = keyActive;
 
 	bool keyFlag = false;
 
@@ -61,24 +65,22 @@ bool MoveDirectionals::update(){
     if(!keyFlag){
         Vector2D nulo(0,0);
         m_game_object->physics.velocity = nulo;
-        switch(keyActive){
-            case 1:
-                auto animCtrl = get_component<AnimationControllerComponent>();
-                animCtrl->changeAnimation("moveUpPause");
-            break;
-            case 2:
-                auto animCtrl = get_component<AnimationControllerComponent>();
-                animCtrl->changeAnimation("moveDownPause");
-            break;
-            case 3:
-                auto animCtrl = get_component<AnimationControllerComponent>();
-                animCtrl->changeAnimation("moveLeftPause");
-            break;
-            case 4:
-                auto animCtrl = get_component<AnimationControllerComponent>();
-                animCtrl->changeAnimation("moveRighPause");
+        if(keyActive == 1) {
+            auto animCtrl = m_game_object->get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("moveUpPause");
         }
-        keyActive = -1;
+        if(keyActive == 2) {
+            auto animCtrl = m_game_object->get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("moveDownPause");
+        }
+        if(keyActive == 3) {
+            auto animCtrl = m_game_object->get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("moveRightPause");
+        }
+        if(keyActive == 4) {
+            auto animCtrl = m_game_object->get_component<AnimationControllerComponent>();
+            animCtrl->changeAnimation("moveLeftPause");
+        }
     }
 	return true;
 }
