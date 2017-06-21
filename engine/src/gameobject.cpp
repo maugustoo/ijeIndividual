@@ -94,6 +94,7 @@ void GameObject::setup()
     }
 
 }
+
 bool GameObject::add_component(Component & component)
 {
     INFO("Adding component to game object " << m_name);

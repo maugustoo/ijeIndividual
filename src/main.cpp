@@ -63,6 +63,11 @@ int main(int, char**)
     AnimationComponent walkUp(player, "spritesLink3.png", 8, 4, 1000, 16, 23);
     AnimationComponent walkDown(player, "spritesLink3.png", 8, 4, 1000, 24, 31);
 
+    AnimationComponent walkLeftPause(player, "spritesLink3.png", 8, 4, 1000, 0, 0);
+    AnimationComponent walkRightPause(player, "spritesLink3.png", 8, 4, 1000, 8, 8);
+    AnimationComponent walkUpPause(player, "spritesLink3.png", 8, 4, 1000, 16, 16);
+    AnimationComponent walkDownPause(player, "spritesLink3.png", 8, 4, 1000, 24, 24);    
+
 
     AnimationControllerComponent linkController(player);
     //linkController.addAnimation("atackLeft", linkAtackLeft);
@@ -72,6 +77,10 @@ int main(int, char**)
     linkController.addAnimation("moveLeft", walkLeft);
     linkController.addAnimation("moveRight", walkRight);
 
+    linkController.addAnimation("moveUpPause", walkUpPause);
+    linkController.addAnimation("moveDownPause", walkDownPause);
+    linkController.addAnimation("moveLeftPause", walkLeftPause);
+    linkController.addAnimation("moveRightPause", walkRightPause);
 
     //player.addSprite(globals::andar, &linkWalkImage);
     //player.addSprite("atackLeft", &linkAtackLeft);

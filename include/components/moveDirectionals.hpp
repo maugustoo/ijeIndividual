@@ -4,6 +4,10 @@
 #include "sdl2include.h"
 #include "components/code.hpp"
 #include "player.hpp"
+#include "gameobject.hpp"
+#include "components/animationcontroller.hpp"
+
+
 using namespace engine;
 
 class MoveDirectionals : public CodeComponent {
@@ -15,10 +19,8 @@ public:
 
     ~MoveDirectionals() {}
 
-    virtual bool update();
+    bool update();
 
 };
-
-
 
 #endif

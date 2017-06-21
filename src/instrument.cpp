@@ -45,13 +45,3 @@ bool Instrument::useSpellQ(){
 	INFO("Using spell Q from " << name());
 	return true;
 }
-bool Instrument::useSpellW(){
-	spells[globals::spellW]->useSpell();
-	INFO("Using spell W from " << name());
-	return true;
-}
-bool Instrument::useSpellE(){
-	spells[globals::spellE]->useSpell();
-	INFO("Using spell E from " << name());
-	return true;
-}
