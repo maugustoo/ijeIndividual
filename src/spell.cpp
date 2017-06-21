@@ -37,10 +37,10 @@ bool Spell::update()
 {
   GameObject::update();
 
-  if(durationTimer.getTime()< duration){
+  if(durationTimer.getTime()< duration) {
     
     
-  }else{
+  } else {
    	//quita do scene
    	INFO("Finish spell");
     setState(State::disabled);
@@ -68,6 +68,7 @@ bool Spell::useSpell()
   }
   return true;
 }
+
 void Spell::setup()
 {
   xF = 0;

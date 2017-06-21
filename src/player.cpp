@@ -119,17 +119,6 @@ bool Player::moveRight(){
     return true;
 }
 
-bool Player::changeInstrument(std::string instrument_name){
-    INFO("Changing Instrument to " << instrument_name);
-    Instrument instrument = instruments[instrument_name];
-    bool isInstrumentNull = true;
-
-    active_instrument = instrument;
-    changeSprite(instrument_name);
-
-    return isInstrumentNull;
-}
-
 bool Player::changeSprite(std::string sprite_name){
     INFO("Changing Sprite to " << sprite_name);
     ImageComponent* sprite = sprites[sprite_name];
@@ -166,16 +155,8 @@ bool Player::handlePlayer(){
     return true;
 }
 
-void Player::addInstrument(std::string instrument_name, Instrument instrument){
-    instruments[instrument_name] = instrument;
-}
-
 void Player::addSprite(std::string sprite_name, ImageComponent * sprite){
     sprites[sprite_name] = sprite;
-}
-
-Instrument Player::getActiveInstrument(){
-    return active_instrument;
 }
 
 void Player::addFragment(int _id){
@@ -189,7 +170,7 @@ void Player::addFragment(int _id){
     }
 
     std::stringstream ss;
-    ss << "Numero de fragmentos: "<<fragments.size();
+    ss << "Numero de fragmentos: " << fragments.size();
     
 
     nFragments->setText(ss.str());

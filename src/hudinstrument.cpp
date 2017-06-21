@@ -19,7 +19,7 @@ bool HUDInstrument::shutdown()
 
 bool HUDInstrument::draw()
 {
-    if(m_player->getActiveInstrument().name() == globals::banjo){
+    /*if(m_player->getActiveInstrument().name() == globals::banjo){
         active_hud = huds[globals::banjo];
         huds[globals::eletric_guitar]->setState(Component::State::disabled);
         huds[globals::accordion]->setState(Component::State::disabled);
@@ -37,7 +37,7 @@ bool HUDInstrument::draw()
 
     active_hud->setState(Component::State::enabled);
 
-    engine::GameObject::draw();
+    engine::GameObject::draw();*/
 
     return true;
 }
