@@ -10,24 +10,12 @@
 #include <sstream>
 #include "game.hpp"
 
-
-#define nframes 4
-
 using namespace engine;
-
-int lastMove = 1;
 
 bool Player::init()
 {
     engine::GameObject::init();
 
-    //active_instrument = instruments[globals::andar];
-    active_sprite = sprites[globals::andar];
-
-    //sprites[globals::eletric_guitar]->setState(Component::State::disabled);
-    //sprites[globals::accordion]->setState(Component::State::disabled);
-
-    //INFO("x"<<physics.collisionBox.x<<"  y"<<physics.collisionBox.y <<"  w"<<physics.collisionBox.w<< "    h"<< physics.collisionBox.h)
     return true;
 }
 
@@ -45,7 +33,7 @@ bool Player::draw()
 
 bool Player::update()
 {
-    handlePlayer();
+    atack();
 
     GameObject::update();
     
@@ -107,7 +95,6 @@ bool Player::moveRight(){
     lastMove = 4;
 
     // Update Velocity
-
     int componentX = defaultVel;
     int componentY = 0;
 
@@ -119,21 +106,10 @@ bool Player::moveRight(){
     return true;
 }
 
-bool Player::changeSprite(std::string sprite_name){
-    INFO("Changing Sprite to " << sprite_name);
-    ImageComponent* sprite = sprites[sprite_name];
-   
-    active_sprite->setState(Component::State::disabled);
-    sprite->setState(Component::State::enabled);
-    active_sprite = sprite;
-
-    return true;
-}
-
-bool Player::handlePlayer(){
+bool Player::atack() {
     
-    if(Input::keyPressed(Input::ONE))
-    {
+    if(Input::keyPressed(Input::ONE)) {
+        useSpell();
         if(lastMove == 3) {
             auto animCtrl = get_component<AnimationControllerComponent>();
             animCtrl->changeAnimation("atackLeft");
@@ -151,28 +127,18 @@ bool Player::handlePlayer(){
             animCtrl->changeAnimation("atackRight");
         }
     }
-    
     return true;
 }
 
-void Player::addSprite(std::string sprite_name, ImageComponent * sprite){
-    sprites[sprite_name] = sprite;
+
+bool Player::addSpell(std::string spell_name, Spell * spell) {
+    INFO("Spell adicionada " << spell_name);
+    spells[spell_name] = spell;
+    return true;
 }
 
-void Player::addFragment(int _id){
-    fragments.push_back(_id);
-    if(fragments.size() == 4) {
-        engine::Game::instance.change_scene("Victory");
-        physics.position.setX(getInitialX());
-        physics.position.setY(getInitialY());
-        life = 100;
-
-    }
-
-    std::stringstream ss;
-    ss << "Numero de fragmentos: " << fragments.size();
-    
-
-    nFragments->setText(ss.str());
-    nFragments->init();
+bool Player::useSpell() {
+    spells["atack"]->useSpell();
+    INFO("Using atack from " << name());
+    return true;
 }

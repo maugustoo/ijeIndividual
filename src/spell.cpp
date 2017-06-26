@@ -7,7 +7,6 @@
 #include "timer.hpp"
 #include "game.hpp"
 
-
 #define nframes 10
 
 using namespace engine;
@@ -37,32 +36,33 @@ bool Spell::update()
 {
   GameObject::update();
 
-  if(durationTimer.getTime()< duration) {
+  if(durationTimer.getTime()< duration){
     
     
-  } else {
-   	//quita do scene
-   	INFO("Finish spell");
+  }else{
+    //quita do scene
+    INFO("Finish spell");
     setState(State::disabled);
 
-   	//Game::instance.m_scene->remove_game_object(name());
+    //Game::instance.m_scene->remove_game_object(name());
    }
-   return true;
+
+  return true;
 }
 
 bool Spell::useSpell()
 {
   if(countdownTimer.getTime() > countdown){
-    INFO("Start spell");
-    AudioComponent * audio = get_component<AudioComponent>();
-    audio->play(1);
-    setState(State::enabled);
-    physics.position = player->physics.position;
-    physics.velocity = player->physics.velocity;
-  	durationTimer.startTimer();
-    countdownTimer.startTimer();
-    //timer2.startTimer();
-    setup();
+      INFO("Start atack");
+      setState(State::enabled);
+
+      physics.position = player->physics.position;
+      Vector2D velocityAtack(1,1); 
+      physics.velocity += player->physics.velocity;
+
+      durationTimer.startTimer();
+      countdownTimer.startTimer();
+      setup();
   }else{
     INFO("on countdown");
   }

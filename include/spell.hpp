@@ -20,9 +20,9 @@ public:
 
     ~Spell() {}
 
-    GameObject * player;
     Timer durationTimer;
     Timer countdownTimer;
+    GameObject * player;
     int countdown;
     int lastTimeUsed;
     int duration;
@@ -33,6 +33,8 @@ public:
     bool draw();
     void setup();
     bool useSpell();
+    bool useAtack();
+
 private:
     
 };

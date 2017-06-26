@@ -49,7 +49,7 @@ void AnimationComponent::drawFrame(){
 	m_current_frame = (((clock.getTime()/animationFrameTime)%n_frames)+start_frame);
 	//m_current_frame = m_current_frame %15;
 	
-	INFO("xF = " << m_game_object->xF << " - yF = " << m_game_object->yF <<"  -mF = "  << m_current_frame);
+	//INFO("xF = " << m_game_object->xF << " - yF = " << m_game_object->yF <<"  -mF = "  << m_current_frame);
 
     int col = (m_current_frame%n_lines)*m_game_object->w;
     int lin = (m_current_frame/n_lines)*m_game_object->h;

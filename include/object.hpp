@@ -1,5 +1,5 @@
-#ifndef __GAME_ENEMY_OBJECT__
-#define __GAME_ENEMY_OBJECT__
+#ifndef __GAME_OBJECT_OBJECT__
+#define __GAME_OBJECT_OBJECT__
 
 #include <string>
 #include <list>
@@ -14,25 +14,22 @@
 
 using namespace engine;
 
-class Player;
-
-class Enemy : public GameObject {
+class Object : public GameObject {
 public:
-    Enemy() : GameObject() {}
-    Enemy(std::string _name,int _x,int _y, Player * target, int enemy_life)
-        : GameObject(_name,_x,_y), m_target(target),  life(enemy_life) {}
+    Object() : GameObject() {}
+    Object(std::string _name,int _x,int _y, Player * target, int object_life)
+        : GameObject(_name,_x,_y), m_target(target), life(object_life) {}
 
-    ~Enemy() {}
+    ~Object() {}
+
     int life = 100;
 
     virtual bool init();
     virtual bool shutdown();
     virtual bool update();
     virtual bool draw();
-    void causeDamage();
-
     
-	private:
+    private:
     Player* m_target;
 };
 
